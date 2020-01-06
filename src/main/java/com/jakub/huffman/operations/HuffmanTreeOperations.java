@@ -15,7 +15,7 @@ public class HuffmanTreeOperations {
 		return mapHuffmanCodes;
 	}
 
-	// input is an array of frequencies, indexed by character code
+	// wejście to tablica częstotliwości, indeksowana kodem znaków
 	public static HuffmanTree buildTree(int[] charFreqs) {
 		PriorityQueue<HuffmanTree> trees = new PriorityQueue<HuffmanTree>();
 		for (int i = 0; i < charFreqs.length; i++)
@@ -24,13 +24,13 @@ public class HuffmanTreeOperations {
 
 		assert trees.size() > 0;
 
-		// loop until there is only one tree left
+		// pętla, aż pozostanie tylko jedno drzewo
 		while (trees.size() > 1) {
-			// two trees with least frequency
+			// dwa drzewa o najmniejszej częstotliwości
 			HuffmanTree a = trees.poll();
 			HuffmanTree b = trees.poll();
 
-			// put into new node and re-insert into queue
+			// wstaw do nowego węzła i włóż ponownie do kolejki
 			trees.offer(new HuffmanNode(a, b));
 		}
 		return trees.poll();
@@ -41,18 +41,18 @@ public class HuffmanTreeOperations {
 		if (tree instanceof HuffmanLeaf) {
 			HuffmanLeaf leaf = (HuffmanLeaf) tree;
 
-			// print out character, frequency, and code for this leaf (which is just the prefix)
+			// wypisz znak, częstotliwość i kod liścia
 			System.out.println(leaf.value + "\t      " + leaf.frequency + "\t        " + prefix);
 
 		} else if (tree instanceof HuffmanNode) {
 			HuffmanNode node = (HuffmanNode) tree;
 
-			// traverse left
+			// przejdź rekursywnie w lewo
 			prefix.append('0');
 			printCodes(node.left, prefix);
 			prefix.deleteCharAt(prefix.length() - 1);
 
-			// traverse right
+			// przejdź rekursywnie w prawo
 			prefix.append('1');
 			printCodes(node.right, prefix);
 			prefix.deleteCharAt(prefix.length() - 1);
@@ -66,12 +66,12 @@ public class HuffmanTreeOperations {
 		} else if (tree instanceof HuffmanNode) {
 			HuffmanNode node = (HuffmanNode) tree;
 
-			// traverse left
+			// przejdź rekursywnie w lewo
 			prefix.append('0');
 			createHuffmanCodesMap(node.left, prefix);
 			prefix.deleteCharAt(prefix.length() - 1);
 
-			// traverse right
+			// przejdź rekursywnie w prawo
 			prefix.append('1');
 			createHuffmanCodesMap(node.right, prefix);
 			prefix.deleteCharAt(prefix.length() - 1);
