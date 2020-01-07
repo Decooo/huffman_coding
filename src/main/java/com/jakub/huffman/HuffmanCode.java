@@ -40,6 +40,7 @@ public class HuffmanCode {
 		System.out.println("Długość zakodowanej wiadomości w bitach = " + encodeString.length());
 		System.out.println("Długość oryginalnej wiadomości w bitach = " + binary.length());
 
+		System.out.println("Stary tekst = " + msg);
 		changeToNewAsciiChar(encodeString);
 	}
 
@@ -66,6 +67,7 @@ public class HuffmanCode {
 				temp.append(encodeString.charAt(j));
 			}
 			list.add(temp.toString());
+
 		}
 
 		// Konwersja na nowe znaki z tabeli ascii
@@ -76,6 +78,6 @@ public class HuffmanCode {
 			convertedList.append((char) code);
 		}
 
-		System.out.println("Tekst powstały z uwzględnieniem kodów ASCII powstałych po zakodowaniu wiadomości z uwzględnieniem przesunięcia bitowego na początku = " + convertedList);
+		System.out.println("Nowy tekst = " + convertedList);
 	}
 }
